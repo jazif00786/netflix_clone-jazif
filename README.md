@@ -1,4 +1,4 @@
-# Netflix Clone - Skill Demonstration
+# Netflix Clone
 
 A polished, responsive web application replicating the core user interface of Netflix, built to showcase front-end development expertise using modern web technologies.
 
