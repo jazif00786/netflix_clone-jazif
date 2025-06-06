@@ -1,30 +1,32 @@
-# React + TypeScript + Vite
+# Netflix Clone - jazif00786
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A sleek, responsive Netflix clone web application built with modern web technologies.  
+This project replicates key Netflix UI elements such as browsing categories, trending movies, top-rated shows, and more — designed as a demonstration of front-end development skills.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Home page with dynamic rows for Trending and Top Rated content
+- Navigation header with categories: Home, TV Shows, Movies, New & Popular, Games, My List, Browse by Languages
+- Responsive layout inspired by Netflix UI
+- Movie and TV show cards with poster images and ratings
+- Functional search bar (non-functional in this demo)
+- Smooth scrolling and user-friendly interface
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+## Technologies Used
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-    project: ["./tsconfig.json", "./tsconfig.node.json"],
-    tsconfigRootDir: __dirname,
-  },
-};
-```
+- HTML5 & CSS3
+- JavaScript (ES6+)
+- TMDb API (The Movie Database) for fetching movie data
+- Git & GitHub for version control and deployment
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+---
+
+## Getting Started
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/jazif00786/netflix_clone-jazif.git
