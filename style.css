@@ -17,7 +17,7 @@ header {
 
 .row {
   margin: 20px;
-  overflow-x: scroll;
+  overflow-x: auto;
   white-space: nowrap;
   padding-bottom: 10px;
 }
@@ -31,14 +31,78 @@ header {
   border-radius: 4px;
 }
 
-.row img {
-  width: 150px;
+.movie-card {
+  position: relative;
+  display: inline-block;
   margin-right: 10px;
   border-radius: 5px;
+  overflow: hidden;
   cursor: pointer;
+  vertical-align: top;
+  width: 150px;
+}
+
+.movie-card img {
+  width: 100%;
+  display: block;
   transition: transform 0.3s ease;
 }
 
-.row img:hover {
+.movie-card:hover img {
   transform: scale(1.1);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px;
+  transition: opacity 0.3s ease;
+}
+
+.movie-card:hover .overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.movie-title {
+  font-weight: bold;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.play-btn,
+.add-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+}
+
+.play-btn:hover {
+  background-color: #e50914;
+}
+
+.add-btn:hover {
+  background-color: #333;
 }

@@ -1,33 +1,85 @@
-const API_KEY = "d89745d1c4948189b8a1c0fb16716f2c"; // Replace this with your own TMDb API key
-const BASE_URL = "https://api.themoviedb.org/3";
-const IMG_PATH = "https://image.tmdb.org/t/p/w500";
+<script>
+  const API_KEY = "d89745d1c4948189b8a1c0fb16716f2c";
+  const BASE_URL = "https://api.themoviedb.org/3";
+  const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500"; // safer size than original
 
-const requests = {
-  popular: `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`,
-  topRated: `${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`,
-  trending: `${BASE_URL}/trending/all/week?api_key=${API_KEY}&language=en-US`,
-};
+  const trendingRow = document.getElementById("trending-row");
+  const topratedRow = document.getElementById("toprated-row");
 
-async function fetchMovies(url, containerId) {
-  try {
-    const res = await fetch(url);
-    const data = await res.json();
+  function createMovieCard(movie) {
+    const card = document.createElement("div");
+    card.className = "movie-card";
 
-    const container = document.getElementById(containerId);
-    container.innerHTML = "";
+    if (!movie.poster_path) {
+      console.warn("Missing poster_path for movie:", movie.title || movie.name);
+      return null;
+    }
 
-    data.results.forEach((movie) => {
-      const img = document.createElement("img");
-      img.src = `${IMG_PATH}${movie.poster_path}`;
-      img.alt = movie.title || movie.name || "Movie Poster";
-      container.appendChild(img);
-    });
-  } catch (error) {
-    console.error("Error fetching movies:", error);
+    const img = document.createElement("img");
+    img.src = IMAGE_BASE_URL + movie.poster_path;
+    img.alt = movie.title || movie.name;
+
+    const info = document.createElement("div");
+    info.className = "movie-info";
+    info.textContent = movie.title || movie.name;
+
+    const actions = document.createElement("div");
+    actions.className = "movie-actions";
+
+    const playBtn = document.createElement("button");
+    playBtn.className = "action-btn";
+    playBtn.title = "Play";
+    playBtn.innerHTML = "▶";
+
+    const plusBtn = document.createElement("button");
+    plusBtn.className = "action-btn";
+    plusBtn.title = "Add to List";
+    plusBtn.innerHTML = "+";
+
+    actions.appendChild(playBtn);
+    actions.appendChild(plusBtn);
+
+    card.appendChild(img);
+    card.appendChild(info);
+    card.appendChild(actions);
+
+    return card;
   }
-}
 
-// Fetch and render all categories
-fetchMovies(requests.popular, "popular");
-fetchMovies(requests.topRated, "topRated");
-fetchMovies(requests.trending, "trending");
+  async function fetchMovies(url, container) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+      const data = await res.json();
+      container.innerHTML = "";
+      data.results.forEach((movie) => {
+        const card = createMovieCard(movie);
+        if (card) container.appendChild(card);
+      });
+    } catch (error) {
+      console.error("Failed to fetch movies:", error);
+      container.innerHTML = `<p style="color:#e50914; font-weight:bold;">Failed to load movies. Please try again later.</p>`;
+    }
+  }
+
+  fetchMovies(`${BASE_URL}/trending/all/week?api_key=${API_KEY}`, trendingRow);
+  fetchMovies(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}`, topratedRow);
+
+  // Profile screen toggle
+  const profileIcon = document.getElementById("profile-icon");
+  const profileScreen = document.getElementById("profile-screen");
+  const closeProfileBtn = document.getElementById("close-profile");
+  const mainContent = document.getElementById("main-content");
+
+  profileIcon.addEventListener("click", () => {
+    profileScreen.style.display = "block";
+    mainContent.style.display = "none";
+  });
+
+  closeProfileBtn.addEventListener("click", () => {
+    profileScreen.style.display = "none";
+    mainContent.style.display = "block";
+  });
+</script>
