@@ -1,13 +1,26 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Netflix Clone</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <header>
+      <img
+        class="netflix-logo"
+        src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
+        alt="Netflix Logo"
+      />
+    </header>
+
+    <main>
+      <div class="row" id="popular"></div>
+      <div class="row" id="topRated"></div>
+      <div class="row" id="trending"></div>
+    </main>
+
+    <script src="script.js"></script>
   </body>
 </html>
