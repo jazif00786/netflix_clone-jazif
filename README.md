@@ -8,10 +8,9 @@ A polished, responsive web application replicating the core user interface of Ne
 
 This project demonstrates the ability to recreate complex streaming service UI/UX patterns, including:
 
-- Dynamic category navigation (Home, TV Shows, Movies, New & Popular, Games, My List, Browse by Languages)
-- Interactive movie and TV show listings featuring trending and top-rated content
+- Dynamic category navigation
 - Responsive design principles adapted for desktop and mobile views
-- Integration with TMDb API for fetching real-time movie data (with placeholder API key)
+- Integration with API for fetching real-time movie data (with placeholder API key)
 - Clean, modular code following best practices
 
 ---
